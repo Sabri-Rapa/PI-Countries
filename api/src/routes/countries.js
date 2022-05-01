@@ -39,7 +39,7 @@ router.get('/:id', async (req, res, next) =>{
     const countryId = await Country.findByPk(aux, {
         include: Activity
     })
-    console.log(countryId.name)
+    // console.log(countryId.name)
     res.json(countryId)
 
     }catch(err){

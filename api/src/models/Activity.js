@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, STRING } = require('sequelize');
 
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
@@ -10,14 +10,18 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING
     },
     difficulty:{
-        type: DataTypes.ENUM('1', '2', '3', '4', '5')
+        type: DataTypes.INTEGER,
+        validate: {
+          min: 1,
+          max: 5
+        }
     },
     duration:{
         type: DataTypes.INTEGER
     },
     season:{
-        type: DataTypes.ENUM('summer', 'winter', 'spring', 'autumn')
-    }
+        type: DataTypes.ENUM('Summer', 'Winter', 'Spring', 'Autumn')
+    },
   },
   {
     timestamps: false

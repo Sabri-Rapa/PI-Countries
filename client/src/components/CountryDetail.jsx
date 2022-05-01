@@ -13,7 +13,7 @@ export default function CountryDetail(){
 
     useEffect(()=> {
         dispatch(countryById(params.id))
-    }, [])
+    }, [dispatch, params.id])
 
     return(
         <div>

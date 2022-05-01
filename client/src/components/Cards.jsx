@@ -6,11 +6,13 @@ import { Fragment, useEffect } from "react"
 export default function Cards(){
 
     let dispatch = useDispatch()
-    const allCountries = useSelector(state => state.allCountries)
+    // const allCountries = useSelector(state => state.allCountries)
+    const allCountries = useSelector(state => state.filteredCountry)
+
 
     useEffect(()=>{
         dispatch(getCountries())
-    }, [])
+    }, [dispatch])
  
 
     
