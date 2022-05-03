@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_COUNTRIES, ID_COUNTRIES, NAME_COUNTRY} from '../actions-type';
+import { GET_COUNTRIES, ID_COUNTRIES, NAME_COUNTRY, GET_ACTIVITIES, FILTER_REGION, FILTER_ACTIVITY} from '../actions-type';
 
 /* export function getCountries(){
     return async function (dispatch){
@@ -45,3 +45,29 @@ export function countryByName(name){
     })
     .catch(error => console.log(error))
 }}
+
+export function getActivities(){
+    return function (dispatch){
+        axios.get('http://localhost:3001/api/activity/all')
+        .then(response =>{
+            dispatch({
+                type: GET_ACTIVITIES,
+                payload: response.data
+            })
+        })
+    }
+}
+
+export function filterByRegion(region){
+    return {
+        type: FILTER_REGION,
+        payload: region,
+    }
+}
+
+export function filterByActivity(activity){
+    return {
+        type: FILTER_ACTIVITY,
+        payload: activity,
+    }
+}

@@ -1,13 +1,13 @@
-import { useEffect } from "react"
+import { useEffect, Fragment } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import Detail from "./Detail"
-
-import { countryById } from "../redux/actions"
+import { countryById, getActivities } from "../redux/actions"
+import Activities from "./Activities"
 
 export default function CountryDetail(){
-
     const countryId = useSelector(state => state.filteredCountry)
+   
     const dispatch = useDispatch()
     const params = useParams()
 
@@ -15,18 +15,31 @@ export default function CountryDetail(){
         dispatch(countryById(params.id))
     }, [dispatch, params.id])
 
-    return(
-        <div>
-            {countryId.map( c =>
-            <Detail flags={c.flags}
+    let activities = countryId.map(a => a.activities)
+    activities = activities.flat()
+
+    return(<Fragment>
+
+        {countryId.map( c => 
+            <Detail key={c.alpha3Code}
+                    flags={c.flags}
+                    name={c.name}
                     region={c.region}
-                    id={c.id}
                     capital={c.capital}
                     subregion={c.subregion}
                     area={c.area}
-                    population={c.population}/>
-        )}
-        <h3>ACTIVIDADES</h3>
-        </div>
-    )
+                    population={c.population}
+                    code={c.alpha3Code}
+          />)}
+
+        {activities.length?
+        activities.map(ac => <Activities key={ac.id}
+                                         name={ac.name} 
+                                         difficulty={ac.difficulty}
+                                         duration={ac.duration}
+                                         season={ac.season}/>) : 
+        <p style={{fontSize: '20px'}}>No activities added</p>}
+        {        console.log('estoy en countryDetail',activities)}
+        
+    </Fragment>)
 }

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Fragment, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { getCountries } from "../redux/actions";
 
 
@@ -120,7 +121,7 @@ export default function AddActivity (){
                     <select name='season'
                             value={activity.season}
                             onChange={handleSelect}>
-                        <option hidden={true}>Season</option>
+                        <option hidden={true}>Select...</option>
                         <option value='Summer'>Summer</option>
                         <option value='Winter'>Winter</option> 
                         <option value='Spring'>Spring</option> 
@@ -132,7 +133,7 @@ export default function AddActivity (){
                     <select name='country'
                             value={activity.country}
                             onChange={handleCountries} >
-                    <option hidden={true}>Country</option>
+                    <option hidden={true}>Select...</option>
                                 
                         {
                         allCountries.map(country =>{
@@ -144,6 +145,7 @@ export default function AddActivity (){
                 {errors.country}
             </div>
             <button type='submit' disabled={enableButton}>Create Activity!</button>
+            <Link to='/countries'><button>Back to home</button></Link>
         </form>
     </Fragment>
 )}

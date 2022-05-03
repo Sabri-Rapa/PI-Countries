@@ -19,7 +19,7 @@ export default function Cards(){
     return <Fragment>
         {
             allCountries.map( c =>
-            <Card id={c.alpha3Code} flags={c.flags} name={c.name} region={c.region}/>
+            <Card key={c.alpha3Code} id={c.alpha3Code} flags={c.flags} name={c.name} region={c.region}/>
         )}
     </Fragment>
 }
