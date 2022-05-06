@@ -1,15 +1,13 @@
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/NavBar/SearchBar";
 import Cards from "../components/Cards";
-import Filter from "../components/Filter";
+import Filter from "../components/NavBar/Filter";
 import { Fragment } from "react";
-import Order from "../components/Order";
 
 export default function Home(){
     return (
     <Fragment>
         <SearchBar />
-        <Order />
-        <Filter />
+        {/* <Filter /> */}
         <br/>
         <Cards />
     </Fragment>

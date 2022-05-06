@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { useDispatch } from "react-redux";
-import { countryByName, getCountries } from "../redux/actions";
+import { countryByName, getCountries } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
 export default function SearchBar(){

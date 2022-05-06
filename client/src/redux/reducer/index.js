@@ -1,9 +1,10 @@
-import { FILTER_ACTIVITY, FILTER_REGION, GET_ACTIVITIES, GET_COUNTRIES, ID_COUNTRIES, NAME_COUNTRY } from "../actions-type";
+import { FILTER_ACTIVITY, SORT_POPULATION, FILTER_REGION, GET_ACTIVITIES, GET_COUNTRIES, ID_COUNTRIES, NAME_COUNTRY, SORT_NAME } from "../actions-type";
 
 const initialState = {
     allCountries: [],
     filteredCountry: [],
     activities: [],
+    filteredActivity: []
 }
 
 function rootReducer(state = initialState, action){
@@ -31,7 +32,6 @@ function rootReducer(state = initialState, action){
             return{
                 ...state,
                 activities: action.payload,
-                filteredActivity: action.payload
             }
         
         case FILTER_REGION:
@@ -41,13 +41,51 @@ function rootReducer(state = initialState, action){
                                  state.allCountries.filter(r => action.payload === r.region) : 
                                  state.allCountries
             }
-        
+
+           
         case FILTER_ACTIVITY:
             let selected = state.allCountries.filter(c => c.activities.map(a => a.name).includes(action.payload))
             return{
                 ...state,
                 filteredCountry: selected
                 }
+
+
+        case SORT_POPULATION:
+            let sortPopulation = action.payload === 'ascendent' ?
+                state.allCountries.sort((a, b) => {
+                    if(a.population > b.population) return 1
+                    if(a.population < b.population) return -1
+                    return 0
+                }) :
+                state.allCountries.sort((a, b) => {
+                    if(a.population > b.population) return -1
+                    if(a.population < b.population) return 1
+                    return 0
+                })
+            return{
+                ...state,
+                allCountries: sortPopulation
+                }
+
+
+        case SORT_NAME:
+            let sortName = action.payload === 'atoz' ?
+                state.allCountries.sort((a, b) => {
+                    if(a.name > b.name) return 1
+                    if(a.name < b.name) return -1
+                    return 0
+                }) :
+                state.allCountries.sort((a, b) => {
+                    if(a.name > b.name) return -1
+                    if(a.name < b.name) return 1
+                    return 0
+                })
+            return{
+                ...state,
+                allCountries: sortName
+                }
+        
     
         default: return state;
     }
@@ -56,4 +94,3 @@ function rootReducer(state = initialState, action){
 export default rootReducer;
 
 
-// let selected = state.allCountries.filter(c => c.activities.map(a => a.name).includes(action.payload)

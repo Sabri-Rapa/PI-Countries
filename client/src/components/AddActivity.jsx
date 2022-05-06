@@ -2,7 +2,7 @@ import axios from "axios";
 import { Fragment, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCountries } from "../redux/actions";
+import { getActivities, getCountries } from "../redux/actions";
 
 
 function validation(activity){

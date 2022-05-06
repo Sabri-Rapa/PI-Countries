@@ -1,6 +1,6 @@
 import { useEffect, Fragment } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import Detail from "./Detail"
 import { countryById, getActivities } from "../redux/actions"
 import Activities from "./Activities"
@@ -40,6 +40,10 @@ export default function CountryDetail(){
                                          season={ac.season}/>) : 
         <p style={{fontSize: '20px'}}>No activities added</p>}
         {        console.log('estoy en countryDetail',activities)}
+
+        <Link to='/countries'>BACK TO HOME</Link>
+
+        <br/>
         
     </Fragment>)
 }

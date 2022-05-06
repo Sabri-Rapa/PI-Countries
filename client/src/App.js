@@ -10,10 +10,10 @@ function App() {
     <div className="App">
       <h1>Henry Countries</h1>
       <Routes>
-          <Route path="/" element={ <LandingPage />}/>
-          <Route path="/countries" element={ <Home/>}/>
-          <Route path="/countries/:id" element={ <CountryDetail/>}/>
-          <Route path="/activity" element={ <AddActivity/>}/>
+          <Route exact path="/" element={ <LandingPage />}/>
+          <Route exact path="/countries" element={ <Home/>}/>
+          <Route exact path="/countries/:id" element={ <CountryDetail/>}/>
+          <Route exact path="/activity" element={ <AddActivity/>}/>
         </Routes>
     </div>
   );

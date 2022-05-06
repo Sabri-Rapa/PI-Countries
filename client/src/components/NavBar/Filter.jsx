@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from "react";
-import { getActivities, filterByRegion, filterByActivity } from "../redux/actions";
+import { getActivities, filterByRegion, filterByActivity } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
 
