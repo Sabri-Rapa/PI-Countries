@@ -2,7 +2,7 @@ import { useEffect, Fragment } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
 import Detail from "./Detail"
-import { countryById, getActivities } from "../redux/actions"
+import { countryById } from "../redux/actions"
 import Activities from "./Activities"
 
 export default function CountryDetail(){
@@ -20,7 +20,8 @@ export default function CountryDetail(){
 
     return(<Fragment>
 
-        {countryId.map( c => 
+        { !countryId.length ? <h1>LOADING</h1> :
+        countryId.map( c => 
             <Detail key={c.alpha3Code}
                     flags={c.flags}
                     name={c.name}
@@ -33,15 +34,16 @@ export default function CountryDetail(){
           />)}
 
         {activities.length?
-        activities.map(ac => <Activities key={ac.id}
-                                         name={ac.name} 
-                                         difficulty={ac.difficulty}
-                                         duration={ac.duration}
-                                         season={ac.season}/>) : 
+        activities.map((ac, index) => <Activities key={index}
+                                                  name={ac.name} 
+                                                  difficulty={ac.difficulty}
+                                                  duration={ac.duration}
+                                                  season={ac.season}/>)  :
         <p style={{fontSize: '20px'}}>No activities added</p>}
-        {        console.log('estoy en countryDetail',activities)}
 
-        <Link to='/countries'>BACK TO HOME</Link>
+
+
+        <Link to='/home'>BACK TO HOME</Link>
 
         <br/>
         

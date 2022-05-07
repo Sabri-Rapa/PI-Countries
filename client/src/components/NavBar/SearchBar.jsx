@@ -11,6 +11,7 @@ export default function SearchBar(){
     function onSubmit(e){
       e.preventDefault();
       dispatch(countryByName(input))
+      setInput('')
     }
 
 

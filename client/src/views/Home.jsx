@@ -7,7 +7,7 @@ export default function Home(){
     return (
     <Fragment>
         <SearchBar />
-        {/* <Filter /> */}
+        <Filter />
         <br/>
         <Cards />
     </Fragment>

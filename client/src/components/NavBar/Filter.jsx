@@ -10,15 +10,11 @@ export default function Filter(){
 
     useEffect(()=>{
         dispatch(getActivities())
-        return console.log('desmonte')
     }, [dispatch])
 
     let allCountries = useSelector(state => state.allCountries)
     let region;
     region = Array.from( region = new Set(allCountries.map(c => c.region)))
-
-    console.log(allCountries)
-    console.log('activities en filter', activities[0])
 
      function handleSelectRegion(e){
          e.preventDefault()
@@ -26,9 +22,19 @@ export default function Filter(){
      }
 
      function handleSelectActivity(e){
-        e.preventDefault()
         dispatch(filterByActivity(e.target.value))
     }
+
+    let oneActivity = activities.map(item=>{
+        return [item.name,item]
+    });
+    let activitiesMapArr = new Map(oneActivity); // Pares de clave y valor
+    
+    let oneActivityPerName = [...activitiesMapArr.values()]; // Conversión a un array
+    
+    console.log(oneActivityPerName)
+   
+
 
     return (
         <Fragment>
@@ -41,8 +47,8 @@ export default function Filter(){
 
             <select name='activities' onChange={handleSelectActivity}>
                 <option hidden={true}>Select ACTIVITY</option>
-                {activities.length?
-                activities.map( a => {return <option key={a.id}>{a.name}</option>} ) : 
+                {oneActivityPerName.length?
+                oneActivityPerName.map( a => {return <option key={a.id}>{a.name}</option>} ) : 
                                              <option>No activities created</option>}        
             </select>
 

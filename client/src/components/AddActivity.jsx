@@ -1,37 +1,41 @@
 import axios from "axios";
 import { Fragment, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { getActivities, getCountries } from "../redux/actions";
+import { Link, useNavigate } from "react-router-dom";
+import { getCountries } from "../redux/actions";
 
 
 function validation(activity){
     let errors = {}
 
     if(!activity.name) errors.name = 'Name of the activity is required';
+    else if(!/^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/.test(activity.name.trim())) errors.name = 'Name cannot contain numbers';
+    else if(activity.name.length < 3) errors.name = 'Name must have at least three letters';
     else if(activity.difficulty.length === 0) errors.difficulty = 'Difficulty is required';
     else if(!activity.duration) errors.duration = 'You must specify a duration'
-    else if(isNaN(activity.duration)) errors.duration = 'Duration must be a number'
+    else if(!/^[0-9]*$/.test(activity.duration)) errors.duration = 'Duration must be a number'
+    else if(activity.duration > 72) errors.duration = 'Duration must be between 1 and 72 hours'
     else if(!activity.season) errors.season = 'Season is required';
-    else if(!activity.country) errors.country = 'You must select at least one country';
+    else if(activity.country.length < 1) errors.country = 'You must select at least one country';
 
     return errors
 }
 
 
 export default function AddActivity (){
-    let dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [activity, setActivity] = useState({
         name: '',
-        difficulty: [],
+        difficulty: '',
         duration: '',
-        season: [],
+        season: '',
         country: []
     })
 
     const [errors, setErrors] = useState({})
-    const [enableButton, setEnableButton] = useState(Object.keys(errors).length === 0 ? false : true)
+    const [enableButton, setEnableButton] = useState(Object.keys(errors).length <1  ? false : true)
     const allCountries = useSelector(state => state.allCountries)
 
     
@@ -43,19 +47,34 @@ export default function AddActivity (){
     async function onSubmit(e){
         e.preventDefault();
         setErrors(validation(activity))
-        await axios.post('http://localhost:3001/api/activity', activity)
 
+
+        if(!activity.name) return alert('Name of the activity is required');
+        else if(!/^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/.test(activity.name.trim())) return alert('Name cannot contain numbers');
+        else if(activity.name.length < 3) return alert ('Name must have at least three letters');
+        else if(activity.difficulty.length === 0) return alert('Difficulty is required');
+        else if(!activity.duration) return alert('You must specify a duration')
+        else if(!/^[0-9]*$/.test(activity.duration)) return alert('Duration must be a number')
+        else if(activity.duration > 72) return alert('Duration must be between 1 and 72 hours')
+        else if(!activity.season) return alert ('Season is required');
+        else if(activity.country.length === 0) return alert('At least one country must be selected')
+
+        
+        await axios.post('http://localhost:3001/api/activity', activity)
+        alert('Activity was added')
         setActivity({
             name: '',
             difficulty: '',
             duration: '',
-            season: [],
+            season: '',
             country: []
         })
-        alert('Activity was added')
+        navigate('/home')
     }
 
-    function handleChange(e){
+
+
+    function handleState(e){
         setActivity({
             ...activity,
             [e.target.name]: e.target.value
@@ -65,24 +84,29 @@ export default function AddActivity (){
         setErrors(objErrors)
     }
 
+    
+
     function handleCountries(e){
         setActivity({
             ...activity,
             country: [...new Set([...activity.country, e.target.value])]
         })
 
-        // let objErrors = validation({activity.country})
-        // setErrors(objErrors)
+        let objErrors = validation({...activity, [e.target.name]: e.target.value})
+        setErrors(objErrors)
+        
     }
 
-    function handleSelect(e){
+    function handleDelete(elem){
         setActivity({
             ...activity,
-            [e.target.name]: e.target.value
+            country: activity.country.filter(country => country !== elem)
         })
+
     }
 
-
+    console.log(errors)
+    console.log(Object.keys(errors))
     //placeholder
 
     return(
@@ -91,61 +115,99 @@ export default function AddActivity (){
             <div>
                 <label>Name:</label>
                 <input name='name'
-                    onChange={handleChange}
+                    onChange={handleState}
                     value={activity.name}/>
                     {errors.name ? <h4><small>{errors.name}</small></h4> : false}
             </div>
-            
+            <br/>
             <div>
-                <label>Difficulty:</label>
-                    <select name='difficulty'
-                            value={activity.difficulty}
-                            onChange={handleSelect}>
-                        <option value='1'>1</option>
-                        <option value='2'>2</option> 
-                        <option value='3'>3</option> 
-                        <option value='4'>4</option>
-                        <option value='5'>5</option> 
-                    </select>
+                <label>DIFFICULTY</label>
+                <label><input type='radio'
+                       name='difficulty'
+                       value='1'
+                       onChange={handleState}></input>1</label>
+                <label><input type='radio'
+                       name='difficulty'
+                       value='2'
+                       onChange={handleState}></input>2</label>
+                <label><input type='radio'
+                       name='difficulty'
+                       value='3'
+                       onChange={handleState}></input>3</label>
+                <label><input type='radio'
+                       name='difficulty'
+                       value='4'
+                       onChange={handleState}></input>4</label>
+                <label><input type='radio'
+                       name='difficulty'
+                       value='5'
+                       onChange={handleState}></input>5</label>
+
                     {errors.difficulty ? <h4><small>{errors.difficulty}</small></h4> : false}
             </div>
 
+            <br/>
 
             <div>
                 <label>Duration:</label>
-                <input name='duration' placeholder='Hours' onChange={handleChange} value={activity.duration}/>
+                <input name='duration' placeholder='Hours' onChange={handleState} value={activity.duration}/>
                 {errors.duration ? <h4><small>{errors.duration}</small></h4> : false}
             </div>
+                
+            <br/>
 
-                <label>Season:</label>
-                    <select name='season'
-                            value={activity.season}
-                            onChange={handleSelect}>
-                        <option hidden={true}>Select...</option>
-                        <option value='Summer'>Summer</option>
-                        <option value='Winter'>Winter</option> 
-                        <option value='Spring'>Spring</option> 
-                        <option value='Autumn'>Autumn</option> 
-                    </select>
+            <div>
+                <label>SEASON</label>
+               <input type='radio'
+                       name='season'
+                       value='Summer'
+                       onChange={handleState}/>Summer
+                <input type='radio'
+                       name='season'
+                       value='Winter'
+                       onChange={handleState}/>Winter
+                <input type='radio'
+                       name='season'
+                       value='Spring'
+                       onChange={handleState}/>Spring
+                <input type='radio'
+                       name='season'
+                       value='Autumn'
+                       onChange={handleState}/>Autumn
+                {errors.season ? <h4><small>{errors.season}</small></h4> : false}
+            </div>
+
+            <br/>
 
             <div>
                 <label>Countries:</label>
                     <select name='country'
                             value={activity.country}
-                            onChange={handleCountries} >
+                            onChange={handleCountries}
+                            multiple={false} >
                     <option hidden={true}>Select...</option>
                                 
                         {
                         allCountries.map(country =>{
-                            return <option>{country.name}</option>
+                            return <option key={country.alpha3Code} value={country.name}>{country.name}</option>
                             })
                         }
                         
                     </select>
-                {errors.country}
+                {errors.country? <h4><small>{errors.country}</small></h4> : false}
             </div>
+            <br/>
+            {activity.country.map( elem => 
+                        <div key={elem}>
+                        <button  onClick={()=>handleDelete(elem)}>{elem}</button>
+                        </div>)}
+
+                        <br/>
+
             <button type='submit' disabled={enableButton}>Create Activity!</button>
-            <Link to='/countries'><button>Back to home</button></Link>
+            <Link to='/home'><button>Back to home</button></Link>
         </form>
+
+
     </Fragment>
 )}
