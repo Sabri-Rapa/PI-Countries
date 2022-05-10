@@ -3,12 +3,14 @@ import { Fragment, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getCountries } from "../redux/actions";
+import styles from '../styles/AddActivity.module.css'
 
 
 function validation(activity){
     let errors = {}
 
     if(!activity.name) errors.name = 'Name of the activity is required';
+    else if(!/^[A-Za-z0-9]*$/.test(activity.name)) errors.name = 'Name cannot contain symbols'
     else if(!/^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/.test(activity.name.trim())) errors.name = 'Name cannot contain numbers';
     else if(activity.name.length < 3) errors.name = 'Name must have at least three letters';
     else if(activity.difficulty.length === 0) errors.difficulty = 'Difficulty is required';
@@ -23,6 +25,9 @@ function validation(activity){
 
 
 export default function AddActivity (){
+
+    const { container, input, backHome } = styles
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -35,7 +40,6 @@ export default function AddActivity (){
     })
 
     const [errors, setErrors] = useState({})
-    const [enableButton, setEnableButton] = useState(Object.keys(errors).length <1  ? false : true)
     const allCountries = useSelector(state => state.allCountries)
 
     
@@ -50,6 +54,7 @@ export default function AddActivity (){
 
 
         if(!activity.name) return alert('Name of the activity is required');
+        else if(!/^[A-Za-z0-9]*$/.test(activity.name)) return alert('Name cannot contain symbols')
         else if(!/^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/.test(activity.name.trim())) return alert('Name cannot contain numbers');
         else if(activity.name.length < 3) return alert ('Name must have at least three letters');
         else if(activity.difficulty.length === 0) return alert('Difficulty is required');
@@ -105,20 +110,25 @@ export default function AddActivity (){
 
     }
 
-    console.log(errors)
-    console.log(Object.keys(errors))
-    //placeholder
 
     return(
     <Fragment >
+        <div className={container}>
+
+
+        <h1>Add an activity</h1>
+
+            <br/>
+
         <form onSubmit={onSubmit}>
-            <div>
-                <label>Name:</label>
+            <div className={input}>
+                <label >Name:</label>
                 <input name='name'
                     onChange={handleState}
                     value={activity.name}/>
                     {errors.name ? <h4><small>{errors.name}</small></h4> : false}
             </div>
+
             <br/>
             <div>
                 <label>DIFFICULTY</label>
@@ -204,10 +214,13 @@ export default function AddActivity (){
 
                         <br/>
 
-            <button type='submit' disabled={enableButton}>Create Activity!</button>
-            <Link to='/home'><button>Back to home</button></Link>
+            <button type='submit' disabled={Object.keys(errors).length > 0}>Create Activity!</button>
+            <br/>
+            <br/>
+
+            <Link to='/home'><button className={backHome}>Back to home</button></Link>
         </form>
 
-
+        </div>           
     </Fragment>
 )}

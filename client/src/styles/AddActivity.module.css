@@ -1,0 +1,35 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    
+}
+
+
+.input {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    margin-top: 5px;
+}
+
+.h4{
+    display: inline-flex;
+
+}
+
+input.danger {
+    border: 2px solid red;
+  }
+  
+
+.error{
+    color:rgb(241, 150, 168)
+}
+
+.backHome{
+    /* margin-bottom:29.2%; */
+    justify-content: space-evenly;
+
+}

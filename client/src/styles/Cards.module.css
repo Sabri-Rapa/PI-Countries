@@ -1,0 +1,105 @@
+.container{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    justify-items: center; 
+}
+
+.h1{
+    margin: 0%;
+    padding: 30px;
+    color:#F2E9E4;
+    font-family: monospace;
+    font-size: 60px;
+    font-style: italic;
+    text-shadow:-2px 2px 0px #313030;
+    margin-bottom: 0px;
+    background: #9A8C98;
+}
+
+.button {
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, #C9ADA7 5%, #F2E9E4 100%);
+	background-color:rgb(244, 241, 206);
+	border-radius:5px;
+	border:2px solid #605c51;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:-2px 2px 0px #ffffff;
+ }
+
+    button:hover{
+        background:linear-gradient(to bottom, #C9ADA7 70%, #4A4E69 100%);
+        background-color:#ccc2a6;
+    }
+
+    button:active{
+        position:relative;
+        top:1px;
+    }
+
+
+
+
+ .buttonTwo {
+	box-shadow: 0px 10px 14px -7px #276873;
+	background:linear-gradient(to bottom, #F2E9E4 5%, #9A8C98 100%);
+	background-color:#c7dfe8;
+	border-radius:5px;
+	display:inline-block;
+	cursor:pointer;
+	color:#4A4E69;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #4A4E69;
+    border:2px solid #F2E9E4
+
+ }
+
+
+    .buttonTwo:hover{
+        background:linear-gradient(to bottom, #C9ADA7 70%, #4A4E69 100%);
+        background-color:#5e888f;
+    }
+
+    buttonTwo:active{
+        position:relative;
+        top:1px;
+    }
+
+
+.contentSelect{
+    max-width: 400px;
+    display: inline-block;
+    }
+     
+    .contentSelect select{
+        width: 100%;
+        cursor: pointer;
+        padding: 1px 3px;
+        height: 30px;
+        border-radius: 5px;
+        background: #4A4E69;
+        font-size: 1em;
+        color: #F2E9E4;
+        text-shadow: 1px 1px 0px #1c1b18;
+        border:2px inset #F2E9E4;
+        position: relative;
+        transition: all 0.25s ease;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+     
+    .contentSelect select:hover{
+        background: linear-gradient(to bottom, #C9ADA7 70%, #4A4E69 100%);
+        color: rgb(65, 66, 66);  
+    }

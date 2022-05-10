@@ -1,0 +1,89 @@
+.allContent{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.h2{
+    margin: 0%;
+    padding: 10px;
+    top: 5px;
+    font-size: 45px;
+}
+
+
+.card{
+ 
+    display:inline-block;
+    margin: 40px 0px ;
+    align-items: center ;
+    flex-direction: column;
+    justify-content: space-around;
+    color:rgb(0, 36, 42, 0.8);
+    background-color: #9A8C98;
+    padding:0% 0%;
+    font-size: 15px;
+    border-radius:10px;
+    box-shadow: 10px 10px 5px grey;
+    position: relative;
+    left:20%;
+
+}
+
+.image{
+    width: 400px;
+    height:250px;
+
+}
+
+.link{
+    margin: 50px;
+    padding: 1% 1% 1% 1%;
+    font-size: 30px;
+    font-weight: 900;
+    text-shadow: 2px 2px 1px azure;
+    align-items: center;
+    display:inline-block;
+    position: relative;
+    background: #7f85ab;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-shadow: 2px 2px 1px azure;
+    transition: all 0.25s ease;
+    border: inset;
+    border-radius: 10%;
+
+
+}
+
+.link:hover{
+    background:blue;
+    background-color:#9fa4c3;
+}
+
+
+
+.contentAvtivity{
+    
+    display: grid;
+    grid-template-columns: repeat(auto, 2fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+}
+
+
+.activityCard{
+    display:inline-block;
+    margin: 5px 30px 0px 20px;
+    align-items: center ;
+    flex-direction: column;
+    justify-content: space-around;
+    color:rgb(0, 36, 42, 0.8);
+    background-color: #C9ADA7;
+    padding:0% 0%;
+    font-size: 15px;
+    border-radius:5px;
+    box-shadow: 10px 10px 5px grey;
+    position: initial;
+    left: 0%;
+    top: 100%;
+
+}

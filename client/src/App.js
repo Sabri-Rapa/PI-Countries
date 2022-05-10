@@ -8,7 +8,6 @@ import AddActivity from './components/AddActivity';
 function App() {
   return (
     <div className="App">
-      <h1>Henry Countries</h1>
       <Routes>
           <Route path="/" element={ <LandingPage />}/>
           <Route path="/home" element={ <Home/>}/>
