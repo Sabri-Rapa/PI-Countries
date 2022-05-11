@@ -20,29 +20,11 @@ router.get('/all', async (req, res, next) =>{
     }
 })
 
+
+
+
 router.post('/', async (req, res, next) =>{
     const {name, difficulty, duration, season, country} = req.body;
-
-    /* return  Activity.create({
-        
-            name,
-            difficulty,
-            duration,
-            season,
-        
-    })
-    .then(response => {
-        country.forEach( async country => {
-            let found = await Country.findOne({
-                where:{
-                    name: country
-                }
-            })
-            return await response.addCountry(found)
-        })
-        res.status(201).send('The activity was created successfully')
-    })
-    .catch(err=>next(err)) */
 
     try{
         let newActivity = await Activity.findOrCreate({
@@ -66,6 +48,21 @@ router.post('/', async (req, res, next) =>{
     }catch(err){
         next(err)
     }
+})
+
+router.delete("/:id", async(req, res, next) =>{
+    const id = req.params.id
+    try{
+        let act = await Activity.destroy({
+            where:{
+                id: id
+            }
+        });
+        return res.send('activity deleted succesfully')
+    } catch(err){
+        next(err)
+    }
+
 })
 
 module.exports = router;

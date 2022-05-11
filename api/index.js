@@ -45,7 +45,7 @@ const paises = await axios.get('https://restcountries.com/v2/all')
     }
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false }).then(async () => {
   await chargeDb();
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console

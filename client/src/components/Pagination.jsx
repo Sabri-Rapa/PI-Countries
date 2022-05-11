@@ -7,22 +7,22 @@ export default function Pagination({countriesPerPage, allCountries, currentPage,
     return (
         <nav>
             <ul>
-            {currentPage > 1 ? 
-            <button onClick={() => pagination(currentPage - 1)}>
-                <a>Volver</a>
-            </button> :
-            null}
-            <button onClick={() => pagination(currentPage)}>
+            <h3>{currentPage}</h3>
+
+            {
+            <button  onClick={() => pagination(currentPage - 1)}   disabled={currentPage === 1}>
+                Back
+            </button> }
+
+            {/* <button onClick={() => pagination(currentPage)}>
                     <a>{currentPage}</a>
-            </button>
+            </button> */}
+
             {currentPage < allCountries/10 ?
-            <button onClick={() => pagination(currentPage + 1)}>
-                <a>Siguiente</a>
+            <button onClick={() => pagination(currentPage + 1)} >
+                Next
             </button> :
             null}
-                {/* {pageNumber && pageNumber.map(number => (
-            <button onClick={()=>pagination(number)}>{number}</button>
-                ))} */}
             </ul>
         </nav>
     )

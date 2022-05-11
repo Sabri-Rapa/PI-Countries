@@ -26,7 +26,7 @@ function validation(activity){
 
 export default function AddActivity (){
 
-    const { container, input, backHome } = styles
+    const { container, input, backHome, h1, errorStyle, countries, divButton, options, divOptions, buttonCreate } = styles
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -112,26 +112,28 @@ export default function AddActivity (){
 
 
     return(
-    <Fragment >
-        <div className={container}>
+        <div >
 
 
-        <h1>Add an activity</h1>
-
+        <h1 className={h1}>Add an activity</h1>
+            <div className={container}>
             <br/>
 
+
         <form onSubmit={onSubmit}>
-            <div className={input}>
-                <label >Name:</label>
+        <div>
+            <div >
+                <label className={input}>NAME</label>
                 <input name='name'
                     onChange={handleState}
                     value={activity.name}/>
-                    {errors.name ? <h4><small>{errors.name}</small></h4> : false}
+                    {errors.name?  <h4 className={errorStyle}><small>{errors.name}</small></h4> : false}
             </div>
 
             <br/>
-            <div>
-                <label>DIFFICULTY</label>
+            <div className={divOptions}>
+                <label className={input}>DIFFICULTY</label>
+                <div className={options}>
                 <label><input type='radio'
                        name='difficulty'
                        value='1'
@@ -152,22 +154,23 @@ export default function AddActivity (){
                        name='difficulty'
                        value='5'
                        onChange={handleState}></input>5</label>
-
-                    {errors.difficulty ? <h4><small>{errors.difficulty}</small></h4> : false}
+                </div>
+                    {errors.difficulty ? <h4 className={errorStyle}><small>{errors.difficulty}</small></h4> : false}
             </div>
 
             <br/>
 
             <div>
-                <label>Duration:</label>
+                <label className={input}>DURATION</label>
                 <input name='duration' placeholder='Hours' onChange={handleState} value={activity.duration}/>
-                {errors.duration ? <h4><small>{errors.duration}</small></h4> : false}
+                {errors.duration ? <h4 className={errorStyle}><small>{errors.duration}</small></h4> : false}
             </div>
                 
             <br/>
 
-            <div>
-                <label>SEASON</label>
+            <div className={divOptions}>
+                <label className={input}>SEASON</label>
+                <div className={options}>
                <input type='radio'
                        name='season'
                        value='Summer'
@@ -184,13 +187,14 @@ export default function AddActivity (){
                        name='season'
                        value='Autumn'
                        onChange={handleState}/>Autumn
-                {errors.season ? <h4><small>{errors.season}</small></h4> : false}
+                </div>
+                {errors.season ? <h4 className={errorStyle}><small>{errors.season}</small></h4> : false}
             </div>
 
             <br/>
 
             <div>
-                <label>Countries:</label>
+                <label className={input}>COUNTRIES</label>
                     <select name='country'
                             value={activity.country}
                             onChange={handleCountries}
@@ -204,23 +208,23 @@ export default function AddActivity (){
                         }
                         
                     </select>
-                {errors.country? <h4><small>{errors.country}</small></h4> : false}
+                {errors.country? <h4 className={errorStyle}><small>{errors.country}</small></h4> : false}
             </div>
             <br/>
             {activity.country.map( elem => 
-                        <div key={elem}>
-                        <button  onClick={()=>handleDelete(elem)}>{elem}</button>
+                        <div key={elem} className={divButton}>
+                        <button className={countries} onClick={()=>handleDelete(elem)}>{elem}</button>
                         </div>)}
 
                         <br/>
-
-            <button type='submit' disabled={Object.keys(errors).length > 0}>Create Activity!</button>
+            </div>
+            <button className={buttonCreate} type='submit' disabled={Object.keys(errors).length > 0}>Create Activity!</button>
             <br/>
             <br/>
 
             <Link to='/home'><button className={backHome}>Back to home</button></Link>
         </form>
+        </div>
 
         </div>           
-    </Fragment>
 )}

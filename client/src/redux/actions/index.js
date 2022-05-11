@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_COUNTRIES, ID_COUNTRIES, NAME_COUNTRY, GET_ACTIVITIES, FILTER_REGION, SORT_POPULATION, FILTER_ACTIVITY, SORT_NAME} from '../actions-type';
+import { GET_COUNTRIES, ID_COUNTRIES, NAME_COUNTRY, GET_ACTIVITIES, FILTER_REGION, SORT_POPULATION, FILTER_ACTIVITY, SORT_NAME, DELETE_ACTIVITY} from '../actions-type';
 
 /* export function getCountries(){
     return async function (dispatch){
@@ -21,18 +21,6 @@ export function getCountries (){
        })
        .catch(error => console.log(error))
     }}
-
-// export function getCountries (page, order, filter){
-//     return function(dispatch){
-//         axios.get(`http://localhost:3001/api/countries?page=${page}&order=${order}&filter=${filter}`)
-//         .then(response => {
-//             dispatch({
-//                 type: GET_COUNTRIES,
-//                 payload: response.data
-//             })
-//        })
-//        .catch(error => console.log(error))
-//     }}
 
 
 
@@ -99,5 +87,17 @@ export function sortByName(name){
     return {
         type: SORT_NAME,
         payload: name,
+    }
+}
+
+export function deleteActivity(id){
+    return function(dispatch){
+        axios.delete(`http://localhost:3001/api/activity/${id}`)
+        .then(response => {
+            dispatch({
+                type: DELETE_ACTIVITY,
+                payload: response.data
+            })
+        })
     }
 }

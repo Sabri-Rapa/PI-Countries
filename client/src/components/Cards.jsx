@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import styles from '../styles/Cards.module.css'
 
 export default function Cards(){
-    const { container, h1, button, buttonTwo, contentSelect } = styles
+    const { container, h1, button, buttonTwo, contentSelect, loading } = styles
 
     let dispatch = useDispatch()
     
@@ -31,8 +31,8 @@ export default function Cards(){
         if(pageNumber === 1) setCountriesPerPage(9)
         else if(pageNumber !== 1) setCountriesPerPage(10)
     }
-
-
+ 
+    // -----------------------------------------------------------------------------------
 
 
 
@@ -86,7 +86,6 @@ export default function Cards(){
 
     let region;
     region = Array.from( region = new Set(allCountries.map(c => c.region)))
-    console.log(allCountries)
 
      function handleSelectRegion(e){
          e.preventDefault()
@@ -132,7 +131,7 @@ export default function Cards(){
             <option hidden={true}>Select ACTIVITY</option>
             {oneActivityPerName.length?
             oneActivityPerName.map( a => {return <option key={a.id}>{a.name}</option>} ) : 
-                                         <option>No activities created</option>}        
+                                         <option >No activities created</option>}        
         </select>
         </div>
 
@@ -177,7 +176,7 @@ export default function Cards(){
         
         <div className={container}>
 
-        {!currentCountries.length ? <img src="https://i.pinimg.com/originals/0e/ff/13/0eff1323b4e6f7ba2678cffe6039a6c9.gif"/> :
+        {!currentCountries.length ? <img className={loading} src="https://i.pinimg.com/originals/0e/ff/13/0eff1323b4e6f7ba2678cffe6039a6c9.gif"/> :
             currentCountries.map( c =>
             <Link to={`/countries/${c.alpha3Code}`}>
             <Card key={c.alpha3Code}

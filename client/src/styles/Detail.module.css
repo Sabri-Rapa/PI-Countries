@@ -1,55 +1,111 @@
-.allContent{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.image{
+    width: 350px;
+    height:200px;
+    padding: 20px;
+    background-color: #9A8C98;
+    padding-bottom: 61px;
+    border-radius: 10px 0px 0px 10px;
+
 }
 
 .h2{
     margin: 0%;
     padding: 10px;
-    top: 5px;
+    /* top: 5px; */
     font-size: 45px;
+    color: antiquewhite;
 }
 
+
+.allContent{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50vmax;
+    width: 100%;
+        /* background: white; */
+    justify-content: center;
+    /* padding-top: 40px; */
+}
+
+.contentAvtivity{
+    display:flexbox;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.h3{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+}
+
+
+.info{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
 
 .card{
- 
-    display:inline-block;
-    margin: 40px 0px ;
-    align-items: center ;
+    display:grid;
+    justify-content: center;
+    border-radius: 10px;
+
+}
+
+
+.dataDetail{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+
+}
+
+.detail{
+    /* display: flexbox; */
+    background-color: #9A8C98;
+    border-radius: 0px 10px 10px 0px;
+    color: #22223B;
+
+
+}
+
+.activityCard{
+    display:flex;
+    margin: auto 40px;
+    align-items: flex-end ;
     flex-direction: column;
     justify-content: space-around;
-    color:rgb(0, 36, 42, 0.8);
-    background-color: #9A8C98;
-    padding:0% 0%;
+    color:#22223B;
     font-size: 15px;
-    border-radius:10px;
-    box-shadow: 10px 10px 5px grey;
-    position: relative;
-    left:20%;
-
+    border: solid;
+    padding: 10px 20px;
+    background-color: #9A8C98;
 }
 
-.image{
-    width: 400px;
-    height:250px;
-
+.activity{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0%;
+    border: sol;
+    /* background-color: antiquewhite; */
+ 
 }
+
 
 .link{
-    margin: 50px;
-    padding: 1% 1% 1% 1%;
-    font-size: 30px;
-    font-weight: 900;
-    text-shadow: 2px 2px 1px azure;
-    align-items: center;
-    display:inline-block;
-    position: relative;
+    margin-bottom: 64px;
+    font-size: 24px;
+    font-weight: 100;
     background: #7f85ab;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     box-shadow: 2px 2px 1px azure;
     transition: all 0.25s ease;
     border: inset;
     border-radius: 10%;
+    margin-top: 0%;
+
 
 
 }
@@ -61,29 +117,51 @@
 
 
 
-.contentAvtivity{
-    
-    display: grid;
-    grid-template-columns: repeat(auto, 2fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 20px;
-}
 
 
-.activityCard{
-    display:inline-block;
-    margin: 5px 30px 0px 20px;
-    align-items: center ;
-    flex-direction: column;
-    justify-content: space-around;
-    color:rgb(0, 36, 42, 0.8);
-    background-color: #C9ADA7;
-    padding:0% 0%;
-    font-size: 15px;
-    border-radius:5px;
-    box-shadow: 10px 10px 5px grey;
-    position: initial;
-    left: 0%;
-    top: 100%;
 
-}
+.buttonTwo {
+	box-shadow: 0px 10px 14px -7px #276873;
+	background:linear-gradient(to bottom, #F2E9E4 5%, #9A8C98 100%);
+	background-color:#c7dfe8;
+	border-radius:5px;
+	display:inline-block;
+	cursor:pointer;
+	color:#4A4E69;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #4A4E69;
+    border:2px solid #F2E9E4
+
+
+ }
+
+
+    .buttonTwo:hover{
+        background:linear-gradient(to bottom, #C9ADA7 70%, #4A4E69 100%);
+        background-color:#5e888f;
+    }
+
+    buttonTwo:active{
+        position:relative;
+        top:1px;
+    }
+
+    .x{
+        margin: 0px 0px;
+        padding: 0px 2px;
+        font-size:20px;
+        cursor:pointer;
+    }
+
+    .loading{
+        display: flex;
+        justify-content: center;
+        margin-left: 380px;
+        height: 450px;
+        width: 950px;
+
+    }

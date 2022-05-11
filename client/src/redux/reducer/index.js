@@ -1,4 +1,4 @@
-import { FILTER_ACTIVITY, SORT_POPULATION, FILTER_REGION, GET_ACTIVITIES, GET_COUNTRIES, ID_COUNTRIES, NAME_COUNTRY, SORT_NAME } from "../actions-type";
+import { FILTER_ACTIVITY, SORT_POPULATION, FILTER_REGION, GET_ACTIVITIES, GET_COUNTRIES, ID_COUNTRIES, NAME_COUNTRY, SORT_NAME, DELETE_ACTIVITY } from "../actions-type";
 
 const initialState = {
     allCountries: [],
@@ -29,6 +29,7 @@ function rootReducer(state = initialState, action){
             }
         
         case GET_ACTIVITIES:
+            if(action.payload )
             return{
                 ...state,
                 activities: action.payload,
@@ -85,6 +86,13 @@ function rootReducer(state = initialState, action){
                 ...state,
                 allCountries: sortName
                 }
+
+        case DELETE_ACTIVITY:
+            let withoutActivity = state.activities.filter(act => act.id !== action.payload)
+            return{
+                ...state,
+                activities: withoutActivity
+            }
         
     
         default: return state;

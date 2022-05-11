@@ -1,7 +1,21 @@
 .container{
     display:flex;
     flex-direction: column;
-    
+    height: 100vh;
+    width: 100vw;
+    align-items: flex-start;
+    justify-content: left;
+    text-align: left;
+    margin-left: 40%;
+
+}
+
+.buttons{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 40%;
+
 }
 
 
@@ -12,6 +26,9 @@
     text-decoration: none;
     color: white;
     margin-top: 5px;
+    font-weight: bold;
+    position: static;
+
 }
 
 .h4{
@@ -32,4 +49,85 @@ input.danger {
     /* margin-bottom:29.2%; */
     justify-content: space-evenly;
 
+}
+
+
+.h1{
+    color: #4A4E69;
+    background-color: #F2E9E4;
+    padding: 10px 0px 10px;
+    margin: 0px;
+}
+
+.errorStyle{
+    padding: 0px;
+    margin: 10px;
+    display: inline;
+    color: rgb(237, 118, 118);
+}
+
+.divButton{
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 30px;
+}
+
+.countries{
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, #C9ADA7 5%, #F2E9E4 100%);
+	background-color:rgb(244, 241, 206);
+	border-radius:5px;
+	border:2px solid #605c51;
+	display:inline-block;
+	cursor:pointer;
+	color:#505739;
+	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	padding:5px 10px;
+	text-decoration:none;
+	text-shadow:-2px 2px 0px #ffffff;
+}
+
+.buttonCreate{
+    box-shadow: 0px 10px 14px -7px #276873;
+	background:linear-gradient(to bottom, #F2E9E4 5%, #9A8C98 100%);
+	background-color:#c7dfe8;
+	border-radius:5px;
+	display:inline-block;
+	cursor:pointer;
+	color:#4A4E69;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #4A4E69;
+    border:2px solid #F2E9E4
+
+}
+
+.backHome{
+    /* margin-bottom: 64px; */
+    font-size: 20px;
+    font-weight: 100;
+    background: #7f85ab;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-shadow: 2px 2px 1px azure;
+    transition: all 0.25s ease;
+    border: inset;
+    border-radius: 10%;
+    margin-top: 0%;
+
+}
+
+.options{
+    color: beige;
+    margin: 10px;
+}
+
+.divOptions{
+    display:flex;
+    flex-direction: row;
 }
