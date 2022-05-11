@@ -131,7 +131,7 @@ export default function Cards(){
             <option hidden={true}>Select ACTIVITY</option>
             {oneActivityPerName.length?
             oneActivityPerName.map( a => {return <option key={a.id}>{a.name}</option>} ) : 
-                                         <option >No activities created</option>}        
+                                         <option disabled>No activities created</option>}        
         </select>
         </div>
 

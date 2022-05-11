@@ -26,10 +26,12 @@ router.get('/all', async (req, res, next) =>{
 router.post('/', async (req, res, next) =>{
     const {name, difficulty, duration, season, country} = req.body;
 
+    let aux = name[0].toUpperCase() + name.slice(1)
+
     try{
         let newActivity = await Activity.findOrCreate({
             where:{
-                name,
+                name: aux,
                 difficulty,
                 duration,
                 season,
